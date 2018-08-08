@@ -123,3 +123,14 @@ func Test_filterTranscationBySpending_input_fan_1200_10feb2018_Should_Be_fan_120
 
 }
 
+func Test_UpdatePoint_Input_UserID_006_Level_Platinium_OutPut_Should_Be_800(t *testing.T) {
+	userId := "006"
+	level := "Platinum"
+	point := 800
+
+	expected := updatepoint(userId, level)
+
+	if expected != point {
+		t.Errorf("Error! Expect %v but %v", point, expected)
+	}
+}
