@@ -1,10 +1,10 @@
 package memberlevel
 
-const orderIdCondition = 8
+const orderCondition = 8
 
-func CheckCountOrder(orderId int) bool{
+func CheckCountOrder(order int) bool {
 
-	if orderId >= orderIdCondition {
+	if order >= orderCondition {
 		return true
 	}
 	return false
