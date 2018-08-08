@@ -120,6 +120,27 @@ func Test_filterTranscationBySpending_input_fan_1200_10feb2018_Should_Be_fan_120
 	if expectedTransactions[0] != actualTransactions[0] {
 		t.Errorf("ExpectedProduct %s but got it %s", expectedTransactions[0].product, actualTransactions[0].product)
 	}
+}
+
+func Test_GetFreePoint_Input_Platinum_Should_Be_300(t *testing.T) {
+	expected := 300
+	level := "Platinum"
+
+	actualResult := GetFreePoint(level)
+
+	if expected != actualResult {
+		t.Errorf("expected %d but got it %d", expected, actualResult)
+	}
 
 }
 
+func Test_GetFreePoint_Input_Gold_Should_Be_100(t *testing.T) {
+	expected := 100
+	level := "Gold"
+
+	actualResult := GetFreePoint(level)
+
+	if expected != actualResult {
+		t.Errorf("expected %d but got it %d", expected, actualResult)
+	}
+}
