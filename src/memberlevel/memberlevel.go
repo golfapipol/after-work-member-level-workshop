@@ -1,5 +1,7 @@
 package memberlevel
 
+import "testing"
+
 const orderCountCondition = 8
 const monthCondition = 6
 
@@ -36,19 +38,31 @@ func CheckUserInRankByID(userId string) bool {
 
 type Transaction struct {
 	product string
-	price float64
-	date string
+	price   float64
+	date    string
 }
 type Transactions []Transaction
+
 const price = 1000
-func filterTranscationBySpending(transactions Transactions) (Transactions) {
+
+func filterTranscationBySpending(transactions Transactions) Transactions {
 
 	filterTransactions := Transactions{}
-	for i:=0; i< len(transactions);i++ {
+	for i := 0; i < len(transactions); i++ {
 		if transactions[i].price > price {
 			filterTransactions = append(filterTransactions, transactions[i])
 		}
 	}
-	
+
 	return filterTransactions
+}
+func Test_GetLastSixMonthByUserId_Input_006_Should_Be_Transaction_Within_Six_Month(t *testing.T) {
+	expectedCountTransactionNumber := 8
+	userId := "006"
+
+	actualTransactions := GetLastSixMonthByUserId(userId)
+
+	if len(actualTransactions) != expectedCountTransactionNumber {
+		t.Errorf("Error, the transaction should be (%v) but it is (%v)", expectedCountTransactionNumber, len(actualTransactions))
+	}
 }
