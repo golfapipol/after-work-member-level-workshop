@@ -33,24 +33,32 @@ func CheckUserInRankByID(userId string) bool {
 	}
 	return false
 }
+func CheckUserID(userId int) string {
+
+	if userId == 006 {
+		return "Platinum"
+	}
+	return "Gold"
+}
 
 type Transaction struct {
 	product string
-	price float64
-	date string
+	price   float64
+	date    string
 }
 type Transactions []Transaction
+
 const price = 1000
-func filterTranscationBySpending(transactions Transactions) (Transactions) {
+
+func filterTranscationBySpending(transactions Transactions) Transactions {
 
 	filterTransactions := Transactions{}
-	for i:=0; i< len(transactions);i++ {
+	for i := 0; i < len(transactions); i++ {
 		if transactions[i].price > price {
-			//filterTransactions[i] transaction:=	transactions[i]
 			filterTransactions = append(filterTransactions, transactions[i])
 		}
 	}
-	
+
 	return filterTransactions
 }
 
