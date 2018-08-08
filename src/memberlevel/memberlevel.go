@@ -33,3 +33,11 @@ func CheckUserInRankByID(userId string) bool {
 	}
 	return false
 }
+func CheckUserID(userId int) string {
+
+	if userId == 006 {
+		return "Platinum"
+	}
+	return "Gold"
+
+}

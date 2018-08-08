@@ -99,3 +99,15 @@ func Test_CheckUserInRankByID_Input_007_Should_Be_False(t *testing.T) {
 	}
 
 }
+
+func Test_UpdateLevel_Input_UserID_006_Output_Should_be_Platinum(t *testing.T) {
+	expected := "Platinum"
+	userId := 006
+
+	actualResult := CheckUserID(userId)
+
+	if expected != actualResult {
+		t.Errorf("Failed because the expected result is %s but got %s", expected, actualResult)
+	}
+
+}
