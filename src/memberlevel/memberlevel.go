@@ -46,7 +46,6 @@ func filterTranscationBySpending(transactions Transactions) (Transactions) {
 	filterTransactions := Transactions{}
 	for i:=0; i< len(transactions);i++ {
 		if transactions[i].price > price {
-			//filterTransactions[i] transaction:=	transactions[i]
 			filterTransactions = append(filterTransactions, transactions[i])
 		}
 	}
