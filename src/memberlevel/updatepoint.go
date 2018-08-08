@@ -1,7 +1,7 @@
 package memberlevel
 
-const tmpId = "006"
-const tmpLevel = "Platinum"
+const TMPID = "006"
+const TMPLEVEL = "Platinum"
 
 type member struct {
 	user_id string
@@ -25,9 +25,9 @@ func updatepoint(userId string, level string) int {
 func getuserdata(userId string) member {
 	var user member
 
-	if userId == tmpId {
-		user.user_id = tmpId
-		user.user_level = tmpLevel
+	if userId == TMPID {
+		user.user_id = TMPID
+		user.user_level = TMPLEVEL
 		user.user_point = 0
 	}
 

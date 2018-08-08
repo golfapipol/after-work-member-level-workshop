@@ -10,6 +10,6 @@ func Test_UpdatePoint_Input_UserID_006_Level_Platinium_OutPut_Should_Be_800(t *t
 	expected := updatepoint(userId, level)
 
 	if expected != point {
-		t.Errorf("Error jaaa. Expect %v but %v", point, expected)
+		t.Errorf("Error! Expect %v but %v", point, expected)
 	}
 }
