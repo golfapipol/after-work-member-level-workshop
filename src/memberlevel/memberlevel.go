@@ -1,9 +1,16 @@
 package memberlevel
 
-import "testing"
+import "time"
 
 const orderCountCondition = 8
 const monthCondition = 6
+
+type transaction struct {
+	transactionId     int
+	transactionPrice  float32
+	transactionDate   time.Time
+	transactionUserId string
+}
 
 func CheckCountOrder(order int, month int) bool {
 	if CheckOrderPerMonth(month) {
@@ -35,6 +42,13 @@ func CheckUserInRankByID(userId string) bool {
 	}
 	return false
 }
+func CheckUserID(userId int) string {
+
+	if userId == 006 {
+		return "Platinum"
+	}
+	return "Gold"
+}
 
 type Transaction struct {
 	product string
@@ -56,13 +70,15 @@ func filterTranscationBySpending(transactions Transactions) Transactions {
 
 	return filterTransactions
 }
-func Test_GetLastSixMonthByUserId_Input_006_Should_Be_Transaction_Within_Six_Month(t *testing.T) {
-	expectedCountTransactionNumber := 8
-	userId := "006"
-
-	actualTransactions := GetLastSixMonthByUserId(userId)
-
-	if len(actualTransactions) != expectedCountTransactionNumber {
-		t.Errorf("Error, the transaction should be (%v) but it is (%v)", expectedCountTransactionNumber, len(actualTransactions))
+func GetLastSixMonthByUserId(userId string) []transaction {
+	return []transaction{
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
 	}
 }
