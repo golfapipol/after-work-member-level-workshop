@@ -1,7 +1,16 @@
 package memberlevel
 
+import "time"
+
 const orderCountCondition = 8
 const monthCondition = 6
+
+type transaction struct {
+	transactionId     int
+	transactionPrice  float32
+	transactionDate   time.Time
+	transactionUserId string
+}
 
 func CheckCountOrder(order int, month int) bool {
 	if CheckOrderPerMonth(month) {
@@ -94,4 +103,16 @@ func getuserdata(userId string) member {
 	}
 
 	return user
+}
+func GetLastSixMonthByUserId(userId string) []transaction {
+	return []transaction{
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+	}
 }
