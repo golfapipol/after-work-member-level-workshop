@@ -1,7 +1,16 @@
 package memberlevel
 
+import "time"
+
 const orderCountCondition = 8
 const monthCondition = 6
+
+type transaction struct {
+	transactionId     int
+	transactionPrice  float32
+	transactionDate   time.Time
+	transactionUserId string
+}
 
 func CheckCountOrder(order int, month int) bool {
 	if CheckOrderPerMonth(month) {
@@ -33,6 +42,13 @@ func CheckUserInRankByID(userId string) bool {
 	}
 	return false
 }
+func CheckUserID(userId int) string {
+
+	if userId == 006 {
+		return "Platinum"
+	}
+	return "Gold"
+}
 
 type Transaction struct {
 	product string
@@ -48,7 +64,6 @@ func filterTranscationBySpending(transactions Transactions) Transactions {
 	filterTransactions := Transactions{}
 	for i := 0; i < len(transactions); i++ {
 		if transactions[i].price > price {
-			//filterTransactions[i] transaction:=	transactions[i]
 			filterTransactions = append(filterTransactions, transactions[i])
 		}
 	}
@@ -64,4 +79,50 @@ func GetFreePoint(level string) int {
 	freePoint["Gold"] = 100
 
 	return freePoint[level]
+}
+
+const TMPID = "006"
+const TMPLEVEL = "Platinum"
+
+type member struct {
+	user_id    string
+	user_level string
+	user_point int
+}
+
+func updatepoint(userId string, level string) int {
+	var user member
+
+	user = getuserdata(userId)
+
+	//freepoint = GetFreePoint(userId, Level)
+	freepoint := 800
+
+	user.user_point = user.user_point + freepoint
+
+	return user.user_point
+}
+
+func getuserdata(userId string) member {
+	var user member
+
+	if userId == TMPID {
+		user.user_id = TMPID
+		user.user_level = TMPLEVEL
+		user.user_point = 0
+	}
+
+	return user
+}
+func GetLastSixMonthByUserId(userId string) []transaction {
+	return []transaction{
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+		transaction{transactionPrice: 1000, transactionUserId: "006"},
+	}
 }

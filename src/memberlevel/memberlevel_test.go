@@ -99,6 +99,18 @@ func Test_CheckUserInRankByID_Input_007_Should_Be_False(t *testing.T) {
 	}
 
 }
+
+func Test_UpdateLevel_Input_UserID_006_Output_Should_be_Platinum(t *testing.T) {
+	expected := "Platinum"
+	userId := 006
+
+	actualResult := CheckUserID(userId)
+
+	if expected != actualResult {
+		t.Errorf("Failed because the expected result is %s but got %s", expected, actualResult)
+	}
+
+}
 func Test_filterTranscationBySpending_input_fan_1200_10feb2018_Should_Be_fan_1200_10feb2018(t *testing.T) {
 
 	transactions := Transactions{
@@ -142,5 +154,26 @@ func Test_GetFreePoint_Input_Gold_Should_Be_100(t *testing.T) {
 
 	if expected != actualResult {
 		t.Errorf("expected %d but got it %d", expected, actualResult)
+	}
+}
+func Test_UpdatePoint_Input_UserID_006_Level_Platinium_OutPut_Should_Be_800(t *testing.T) {
+	userId := "006"
+	level := "Platinum"
+	point := 800
+
+	expected := updatepoint(userId, level)
+
+	if expected != point {
+		t.Errorf("Error! Expect %v but %v", point, expected)
+	}
+}
+func Test_GetLastSixMonthByUserId_Input_006_Should_Be_Transaction_Within_Six_Month(t *testing.T) {
+	expectedCountTransactionNumber := 8
+	userId := "006"
+
+	actualTransactions := GetLastSixMonthByUserId(userId)
+
+	if len(actualTransactions) != expectedCountTransactionNumber {
+		t.Errorf("Error, the transaction should be (%v) but it is (%v)", expectedCountTransactionNumber, len(actualTransactions))
 	}
 }
